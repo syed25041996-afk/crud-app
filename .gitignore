@@ -1,0 +1,10 @@
+# .gitignore content for a typical full-stack project
+
+# Node.js/Frontend (Angular)
+/frontend/node_modules
+/frontend/dist/
+
+# Python/Backend (FastAPI)
+/backend/__pycache__/
+/backend/venv/
+.env
