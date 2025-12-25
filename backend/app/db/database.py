@@ -1,8 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from core.config import settings
 
-SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:1234@localhost/product_db'
+# print("=================================================")
+# print(settings.DATABASE_URL)
+SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
+# SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:1234@192.168.1.103/product_db'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
