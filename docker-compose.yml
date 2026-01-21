@@ -1,0 +1,23 @@
+services:
+  backend:
+    image: product-api:slim
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fastapi_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile # You'll need an Angular Dockerfile here
+    container_name: angular_frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

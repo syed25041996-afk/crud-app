@@ -1,0 +1,9 @@
+fastapi[standard]>=0.113.0,<0.114.0
+pydantic>=2.7.0,<3.0.0
+sqlalchemy>=2.0.0,<3.0.0
+psycopg2-binary>=2.9.0,<3.0.0
+
+# Optional but Recommended for DevOps/API Work
+python-multipart==0.0.7  # Required for handling Form data/File uploads
+httpx==0.26.0             # For making async API calls or testing
+python-dotenv==1.0.1      # To load .env files

@@ -1,0 +1,34 @@
+name: Deploy via Tailscale SSH
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 1. Connect to your Tailnet
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      # 2. Setup SSH Key
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Add your machine's Tailscale IP to known_hosts to avoid prompts
+          ssh-keyscan -H ${{ secrets.SERVER_TAILSCALE_IP }} >> ~/.ssh/known_hosts
+
+      # 3. SSH into your machine and deploy
+      - name: Execute Remote Commands
+        run: |
+          ssh -i ~/.ssh/id_rsa user@${{ secrets.SERVER_TAILSCALE_IP }} << 'EOF'
+            echo "Pulling latest changes..."
+          EOF
