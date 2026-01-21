@@ -29,5 +29,5 @@ jobs:
       # 3. SSH into your machine and deploy
       - name: Execute Remote Commands
         run: |
-          ssh -i ~/.ssh/id_rsa home@${{ secrets.SERVER_TAILSCALE_IP }}
+          ssh -i ~/.ssh/id_rsa home@${{ secrets.SERVER_TAILSCALE_IP }} "docker ps"
           echo "Connected to remote server"
