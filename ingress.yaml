@@ -2,8 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: main-ingress
+  namespace: default # Make sure this matches where your services are
   annotations:
-    # This tells the Tailscale Operator to create a machine in your Tailnet
     tailscale.com/expose: "true"
 spec:
   ingressClassName: tailscale
@@ -11,10 +11,17 @@ spec:
   - host: home.tail2b1f38.ts.net
     http:
       paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend  # <--- MUST match "kubectl get svc" NAME
+            port:
+              number: 8000
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: frontend  # <--- Matches the name in frontend.yml
+            name: frontend # <--- MUST match "kubectl get svc" NAME
             port:
-              number: 80    # <--- Matches the port in frontend.yml
+              number: 80
