@@ -3,11 +3,10 @@ kind: Ingress
 metadata:
   name: main-ingress
   annotations:
-    # This tells Tailscale to create a magic link for this app
+    # This tells the Tailscale Operator to create a machine in your Tailnet
     tailscale.com/expose: "true"
 spec:
-  # This tells Kubernetes to use the Tailscale driver instead of Nginx
-  ingressClassName: tailscale 
+  ingressClassName: tailscale
   rules:
   - host: home.tail2b1f38.ts.net
     http:
@@ -16,6 +15,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: crud-app-service  # <--- Make sure this matches your Service name!
+            name: frontend  # <--- Matches the name in frontend.yml
             port:
-              number: 80            # <--- Make sure this matches your Service port!
+              number: 80    # <--- Matches the port in frontend.yml
