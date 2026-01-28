@@ -40,9 +40,9 @@ jobs:
           ssh -i ~/.ssh/id_rsa home@${{ secrets.SERVER_TAILSCALE_IP }} << 'EOF'
             cd /home/home/apps/crud-app
             git pull origin main
-            docker-compose down
             kubectl delete all --all
-            kubectl create configmap backend-config --from-env-file=./backend/.env
+            kubectl delete configmap backend-config
+            kubectl apply -f configmap.yaml
             kubectl apply -f backend.yaml
             kubectl apply -f frontend.yaml
             kubectl apply -f ingress.yaml
