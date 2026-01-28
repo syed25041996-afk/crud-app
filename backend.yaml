@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fastapi-backend
-          image: your-username/product-api:latest # REPLACE THIS
+          image: techfreaksyed/product-app:backend # REPLACE THIS
           ports:
             - containerPort: 8000
           # Handling the .env file from compose:

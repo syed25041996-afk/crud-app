@@ -41,6 +41,7 @@ jobs:
             cd /home/home/apps/crud-app
             git pull origin main
             docker-compose down
+            kubectl delete all --all
             kubectl create configmap backend-config --from-env-file=./backend/.env
             kubectl apply -f backend.yaml
             kubectl apply -f frontend.yaml

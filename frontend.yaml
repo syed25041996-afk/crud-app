@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: angular-frontend
-        image: your-username/angular-frontend:latest # REPLACE THIS
+        image: techfreaksyed/product-app:frontend # REPLACE THIS
         ports:
         - containerPort: 80
 ---
