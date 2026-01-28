@@ -8,20 +8,20 @@ metadata:
 spec:
   ingressClassName: tailscale
   rules:
-  - host: home.tail2b1f38.ts.net
+    # - host: home.tail2b1f38.ts.net  # <--- OPTIONAL: Use if you have a custom domain
     http:
       paths:
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: backend  # <--- MUST match "kubectl get svc" NAME
-            port:
-              number: 8000
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: frontend # <--- MUST match "kubectl get svc" NAME
-            port:
-              number: 80
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: backend # <--- MUST match "kubectl get svc" NAME
+              port:
+                number: 8000
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: frontend # <--- MUST match "kubectl get svc" NAME
+              port:
+                number: 80
