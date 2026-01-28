@@ -7,7 +7,7 @@ import { Product } from './product';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = '/api/products';
+  private apiUrl = 'http://home.tail2b1f38.ts.net/api/products';
 
   constructor(private http: HttpClient) { }
 
