@@ -45,5 +45,6 @@ jobs:
             kubectl create configmap backend-config --from-env-file=./backend/.env
             kubectl apply -f backend.yaml
             kubectl apply -f frontend.yaml
+            kubectl apply -f ingress.yaml
             echo "Deployment completed successfully."
           EOF
