@@ -3,27 +3,19 @@ kind: Ingress
 metadata:
   name: main-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
-    # This tells NGINX to treat the path as a Regular Expression
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    # This strips the "/api" part before sending it to FastAPI
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    # This tells Tailscale to create a magic link for this app
+    tailscale.com/expose: "true"
 spec:
+  # This tells Kubernetes to use the Tailscale driver instead of Nginx
+  ingressClassName: tailscale 
   rules:
-    - host: home.tail2b1f38.ts.net
-      http:
-        paths:
-          - path: /api/(.*)
-            pathType: ImplementationSpecific # <--- Changed from Prefix
-            backend:
-              service:
-                name: backend
-                port:
-                  number: 8000
-          - path: /(.*)
-            pathType: ImplementationSpecific # <--- Changed from Prefix
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 80
+  - host: home.tail2b1f38.ts.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: crud-app-service  # <--- Make sure this matches your Service name!
+            port:
+              number: 80            # <--- Make sure this matches your Service port!
