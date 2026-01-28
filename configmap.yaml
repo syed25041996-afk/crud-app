@@ -6,8 +6,8 @@ metadata:
   name: backend-config
 
 data:
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: 1234
-  POSTGRES_DB: product_db
-  POSTGRES_SERVER: 192.168.1.103
-  POSTGRES_PORT: 5432
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "1234"
+  POSTGRES_DB: "product_db"
+  POSTGRES_SERVER: "192.168.1.103"
+  POSTGRES_PORT: "5432"
