@@ -28,11 +28,21 @@ jobs:
 
       # 3. SSH into your machine and deploy
       - name: Execute Remote Commands
+        # run: |
+        #   ssh -i ~/.ssh/id_rsa home@${{ secrets.SERVER_TAILSCALE_IP }} << 'EOF'
+        #     cd /home/home/apps/crud-app
+        #     git pull origin main
+        #     docker-compose down
+        #     docker-compose up -d --build
+        #     echo "Deployment completed successfully."
+        #   EOF
         run: |
           ssh -i ~/.ssh/id_rsa home@${{ secrets.SERVER_TAILSCALE_IP }} << 'EOF'
             cd /home/home/apps/crud-app
             git pull origin main
             docker-compose down
-            docker-compose up -d --build
+            kubectl create configmap backend-config --from-env-file=./backend/.env
+            kubectl apply -f backend.yaml
+            kubectl apply -f frontend.yaml
             echo "Deployment completed successfully."
           EOF
