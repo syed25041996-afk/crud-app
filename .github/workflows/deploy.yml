@@ -42,7 +42,8 @@ jobs:
             git pull origin main
             kubectl delete all --all
             kubectl delete configmap backend-config
-            sleep 5
+            kubectl delete ingress main-ingress
+            sleep 10
             kubectl apply -f configmap.yaml
             kubectl apply -f backend.yaml
             kubectl apply -f frontend.yaml

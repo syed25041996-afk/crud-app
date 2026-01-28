@@ -8,7 +8,6 @@ metadata:
 spec:
   ingressClassName: tailscale
   rules:
-    # - host: home.tail2b1f38.ts.net  # <--- OPTIONAL: Use if you have a custom domain
     http:
       paths:
         - path: /api
