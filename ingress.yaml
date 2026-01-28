@@ -8,19 +8,19 @@ metadata:
 spec:
   ingressClassName: tailscale
   rules:
-    http:
-      paths:
-        - path: /api
-          pathType: Prefix
-          backend:
-            service:
-              name: backend # <--- MUST match "kubectl get svc" NAME
-              port:
-                number: 8000
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: frontend # <--- MUST match "kubectl get svc" NAME
-              port:
-                number: 80
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend # <--- MUST match "kubectl get svc" NAME
+                port:
+                  number: 8000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend # <--- MUST match "kubectl get svc" NAME
+                port:
+                  number: 80
