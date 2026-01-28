@@ -4,21 +4,24 @@ metadata:
   name: main-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
+    # This tells NGINX to treat the path as a Regular Expression
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    # This strips the "/api" part before sending it to FastAPI
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
-    - host: home.tail2b1f38.ts.net # <--- YOUR TAILSCALE DOMAIN
+    - host: home.tail2b1f38.ts.net
       http:
         paths:
           - path: /api/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific # <--- Changed from Prefix
             backend:
               service:
                 name: backend
                 port:
                   number: 8000
           - path: /(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific # <--- Changed from Prefix
             backend:
               service:
                 name: frontend
