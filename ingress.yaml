@@ -4,6 +4,8 @@ metadata:
   name: main-ingress
   annotations:
     tailscale.com/expose: "true"
+    # This tells Tailscale to strictly handle HTTP on port 80
+    tailscale.com/experimental-forward-http: "true"
 spec:
   ingressClassName: tailscale
   rules:
