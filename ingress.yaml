@@ -7,19 +7,19 @@ metadata:
 spec:
   ingressClassName: tailscale
   rules:
-    - http:
-        paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: backend.default.svc.cluster.local
-                port:
-                  number: 8000
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend.default.svc.cluster.local
-                port:
-                  number: 80
+  - http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend  # Just the name!
+            port:
+              number: 8000
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend # Just the name!
+            port:
+              number: 80
