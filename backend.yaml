@@ -33,4 +33,5 @@ spec:
     - protocol: TCP
       port: 8000 # The port inside the cluster
       targetPort: 8000 # The port the container listens on
-  type: ClusterIP # Internal only
+  type: LoadBalancer # <-- Changed from ClusterIP
+  loadBalancerClass: tailscale # <-- Added Tailscale loadBalancerClass

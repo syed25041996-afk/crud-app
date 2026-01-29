@@ -29,4 +29,5 @@ spec:
     - protocol: TCP
       port: 80 # Port the Service is exposed on
       targetPort: 80 # Port the Nginx/Angular container listens on
-  type: ClusterIP # Use 'LoadBalancer' if on Cloud (AWS/GCP/Azure)
+  type: LoadBalancer # <-- Changed from ClusterIP
+  loadBalancerClass: tailscale # <-- Added Tailscale loadBalancerClass
