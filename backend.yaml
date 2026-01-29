@@ -15,6 +15,7 @@ spec:
       containers:
         - name: fastapi-backend
           image: techfreaksyed/product-app:backend # REPLACE THIS
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           # Handling the .env file from compose:
