@@ -9,6 +9,7 @@ import { Product } from './product';
 export class ProductService {
   // private apiUrl = 'http://home.tail2b1f38.ts.net:8000/api/products';
   // For tailscale service testing purpose, use the below URL
+  // xyz
   private apiUrl = 'http://default-backend.tail2b1f38.ts.net:8000/api/products';
 
   constructor(private http: HttpClient) { }
