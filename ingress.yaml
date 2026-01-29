@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: main-ingress
-  namespace: default # Make sure this matches where your services are.
   annotations:
     tailscale.com/expose: "true"
 spec:
@@ -14,13 +13,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: backend # <--- MUST match "kubectl get svc" NAME
+                name: backend.default.svc.cluster.local
                 port:
                   number: 8000
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend # <--- MUST match "kubectl get svc" NAME
+                name: frontend.default.svc.cluster.local
                 port:
                   number: 80

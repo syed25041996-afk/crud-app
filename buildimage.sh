@@ -6,5 +6,5 @@ rm -rf dist/
 ng build --configuration production
 
 # 3. Build Docker image with a NEW tag (to force K8s to see a change)
-docker build -t techfreaksyed/product-app:frontend .
-docker push techfreaksyed/product-app:frontend
+sudo docker build -t techfreaksyed/product-app:frontend .
+sudo docker push techfreaksyed/product-app:frontend
