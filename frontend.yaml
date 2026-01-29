@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: angular-frontend
-          image: techfreaksyed/product-app:frontend-v2 # REPLACE THIS
+          image: techfreaksyed/product-app:frontend # REPLACE THIS
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
 ---
