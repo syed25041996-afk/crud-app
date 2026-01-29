@@ -4,24 +4,29 @@ metadata:
   name: main-ingress
   annotations:
     tailscale.com/expose: "true"
-    # This tells Tailscale to strictly handle HTTP on port 80
-    tailscale.com/experimental-forward-http: "true"
+    # This is often required to trigger the L7 proxy setup
+    tailscale.com/hostname: "product-app"
 spec:
   ingressClassName: tailscale
+  # Adding a TLS block (even without a secret) sometimes
+  # forces the Tailscale operator to initialize the listener.
+  tls:
+    - hosts:
+        - product-app.tail2b1f38.ts.net
   rules:
-  - http:
-      paths:
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: backend  # Just the name!
-            port:
-              number: 8000
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: frontend # Just the name!
-            port:
-              number: 80
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 8000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
