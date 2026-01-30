@@ -8,25 +8,25 @@ metadata:
     tailscale.com/hostname: "product-app"
 spec:
   ingressClassName: tailscale
-  # Adding a TLS block (even without a secret) sometimes
+  # Adding a TLS block (even without a secret) sometimes 
   # forces the Tailscale operator to initialize the listener.
   tls:
-    - hosts:
-        - product-app.tail2b1f38.ts.net
+  - hosts:
+    - product-app.tail2b1f38.ts.net
   rules:
-    - http:
-        paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: backend
-                port:
-                  number: 8000
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 80
+  - http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend
+            port:
+              number: 8000
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
